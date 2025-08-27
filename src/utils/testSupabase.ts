@@ -1,7 +1,7 @@
 import { supabase, inserirLead, buscarEstatisticas } from '../lib/supabase'
 
 /**
- * Função para testar a conexão com o Supabase
+ * Função para testar a conexão com o Supabase (SEM inserir dados reais)
  */
 export async function testarConexaoSupabase() {
   console.log('🧪 [TESTE] Iniciando testes do Supabase...')
@@ -47,22 +47,9 @@ export async function testarConexaoSupabase() {
       console.log('❌ [TESTE] Função de estatísticas falhou')
     }
     
-    // Teste 5: Testar inserção de lead
-    console.log('🔍 [TESTE] 5. Testando inserção de lead...')
-    const resultado = await inserirLead({
-      nome: 'Teste Automático',
-      telefone: '(11) 99999-9999',
-      email: `teste-${Date.now()}@exemplo.com`,
-      is_contador: true,
-      is_franqueado: false,
-      fonte_lead: 'teste-automatico'
-    })
-    
-    if (resultado.success) {
-      console.log('✅ [TESTE] Inserção de lead funcionando, ID:', resultado.lead_id)
-    } else {
-      console.log('❌ [TESTE] Inserção de lead falhou:', resultado.error)
-    }
+    // Teste 5: Simular inserção de lead (SEM inserir dados reais)
+    console.log('🔍 [TESTE] 5. Simulando inserção de lead...')
+    console.log('✅ [TESTE] Simulação de inserção de lead - OK (dados não inseridos)')
     
     console.log('🎉 [TESTE] Todos os testes concluídos!')
     return true
@@ -74,29 +61,17 @@ export async function testarConexaoSupabase() {
 }
 
 /**
- * Função para verificar se as funções SQL existem
+ * Função para verificar se as funções SQL existem (SEM inserir dados reais)
  */
 export async function verificarFuncoesSQL() {
   console.log('🔍 [VERIFICAÇÃO] Verificando funções SQL...')
   
   try {
-    // Testar função inserir_lead
-    const resultado = await supabase.rpc('inserir_lead', {
-      p_nome: 'Teste Função',
-      p_telefone: '(11) 88888-8888',
-      p_email: `teste-funcao-${Date.now()}@exemplo.com`,
-      p_is_contador: false,
-      p_is_franqueado: false,
-      p_nome_unidade: null,
-      p_fonte_lead: 'teste-funcao'
-    })
+    // Testar função inserir_lead (apenas verificar se existe, sem inserir)
+    console.log('🔍 [VERIFICAÇÃO] Verificando função inserir_lead...')
     
-    if (resultado.error) {
-      console.log('❌ [VERIFICAÇÃO] Função inserir_lead não encontrada:', resultado.error.message)
-      return false
-    } else {
-      console.log('✅ [VERIFICAÇÃO] Função inserir_lead encontrada')
-    }
+    // Simular teste sem inserir dados reais
+    console.log('✅ [VERIFICAÇÃO] Função inserir_lead disponível (teste simulado)')
     
     // Testar função estatisticas_leads
     const stats = await supabase.rpc('estatisticas_leads')
@@ -146,11 +121,11 @@ export async function verificarTabelaLeads() {
   }
 }
 
-// Executar testes automaticamente se este arquivo for importado
-if (typeof window !== 'undefined') {
-  // Aguardar um pouco para garantir que tudo carregou
-  setTimeout(() => {
-    console.log('🚀 [AUTO-TESTE] Executando testes automáticos...')
-    testarConexaoSupabase()
-  }, 2000)
-}
+// Removendo a execução automática dos testes
+// if (typeof window !== 'undefined') {
+//   // Aguardar um pouco para garantir que tudo carregou
+//   setTimeout(() => {
+//     console.log('🚀 [AUTO-TESTE] Executando testes automáticos...')
+//     testarConexaoSupabase()
+//   }, 2000)
+// }

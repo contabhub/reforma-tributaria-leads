@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Download, BookOpen, Users, CheckCircle, Phone, Mail, User } from 'lucide-react';
 import contabhubLogo from './assets/Contabhub logo.png';
 import { inserirLead, formatarDadosFormulario } from './lib/supabase';
-import { testarConexaoSupabase, verificarFuncoesSQL, verificarTabelaLeads } from './utils/testSupabase';
+// Removendo a execução automática dos testes - mantendo apenas as importações para uso manual
+// import { testarConexaoSupabase, verificarFuncoesSQL, verificarTabelaLeads } from './utils/testSupabase';
 
 interface FormData {
   nome: string;
@@ -35,23 +36,23 @@ function App() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Executar testes do Supabase quando o componente carregar
-  useEffect(() => {
-    console.log('🚀 [APP] Componente carregado, executando testes do Supabase...')
-    
-    const executarTestes = async () => {
-      try {
-        await testarConexaoSupabase()
-        await verificarFuncoesSQL()
-        await verificarTabelaLeads()
-      } catch (error) {
-        console.error('💥 [APP] Erro ao executar testes:', error)
-      }
-    }
-    
-    // Aguardar um pouco para garantir que tudo carregou
-    setTimeout(executarTestes, 1000)
-  }, []);
+  // Removendo a execução automática dos testes do Supabase
+  // useEffect(() => {
+  //   console.log('🚀 [APP] Componente carregado, executando testes do Supabase...')
+  //   
+  //   const executarTestes = async () => {
+  //     try {
+  //       await testarConexaoSupabase()
+  //       await verificarFuncoesSQL()
+  //       await verificarTabelaLeads()
+  //     } catch (error) {
+  //       console.error('💥 [APP] Erro ao executar testes:', error)
+  //     }
+  //   }
+  //   
+  //   // Aguardar um pouco para garantir que tudo carregou
+  //   setTimeout(executarTestes, 1000)
+  // }, []);
 
   const downloadUrl = "https://drive.google.com/uc?export=download&id=1VC_KiZ7DUq02oPbvnPAZx05jciPObkdm";
 
